@@ -250,7 +250,7 @@ export const drawChart = (containerIDWithHash, options, onload) => {
 
         chart: {
             events: {
-                load: function() {
+                load: function(event) {
 
                     this.showLoading();
                     currentPrice.init();
@@ -280,10 +280,12 @@ export const drawChart = (containerIDWithHash, options, onload) => {
                                 });
                             }, 0);
                         });
-                    })
+                    });
+
                     if ($.isFunction(onload)) {
                         onload();
                     }
+
                     if (isAffiliates() && isHideFooter()) {
                         $(this.credits.element).remove();
                         this.margin[2] = 5;

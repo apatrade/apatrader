@@ -5,27 +5,27 @@
         </div>
         <div class='row'>
             <span class='title'>Title</span>
-            <select rv-jq-class='"real-dialog-ul"' rv-selectmenu-width='100' rv-selectmenu="user.salutation" rv-selectrefresh="account.salutation_array">
+            <select rv-jq-class='"real-dialog-ul"' rv-selectmenu-width='100' rv-selectmenu="user.salutation" rv-selectrefresh="account.salutation_array" rv-selectmenu-disabled="input_disabled">
                 <option rv-each-row="user.salutation_array" rv-value="row">{row | i18n}</option>
             </select>
         </div>
         <div class='row'>
             <span class='title'>First name</span>
-            <input rv-value='user.first_name' />
+            <input rv-value='user.first_name' rv-disabled="input_disabled"/>
             <div class='validations'>
                 <span rv-show='user.first_name | eq "" | and empty_fields.validate' class='validation'>* Please enter your first name.</span>
             </div>
         </div>
         <div class='row'>
             <span class='title'>Family name</span>
-            <input rv-value='user.last_name' />
+            <input rv-value='user.last_name' rv-disabled="input_disabled"/>
             <div class='validations'>
                 <span rv-show='user.last_name | eq "" | and empty_fields.validate' class='validation'>* Please enter your family name.</span>
             </div>
         </div>
         <div class='row'>
             <span class='title'>Date of birth</span>
-            <input type="text" rv-datepicker="user.date_of_birth" numberOfMonths="1">
+            <input type="text" rv-datepicker="user.date_of_birth" numberOfMonths="1" rv-disabled="input_disabled">
             <!-- <input rv-value='user.date_of_birth' /> -->
             <div class='validations'>
                 <span rv-show='user.date_of_birth | is-valid-date "YYYY-MM-DD" | eq false | and empty_fields.validate' class='validation'>* Please enter a valid date in yyyy-mm-dd format.</span>
@@ -111,14 +111,15 @@
                 <option rv-each-row="user.country_array" rv-value="row.value">{row.text}</option>
             </select>
             <div class='validations'>
-                <span rv-show='user.tax_residence | negate | and empty_fields.validate' class='validation'>* Please select a country</span>
+                <span rv-show='user.tax_residence | negate | and empty_fields.validate' class='validation error-msg'>This field is required.</span>
             </div>
         </div>
         <div class="row" rv-show="what_todo | eq 'upgrade-mf'">
             <span class="title">Tax identification number</span>
             <input type="text" maxlength="20" rv-value="user.tax_identification_number">
             <div class='validations'>
-                <span rv-show='user.tax_identification_number | eq "" | and empty_fields.validate' class='validation'>* Please enter a valid value</span>
+                <span class='validation error-msg ' rv-show='user.tax_identification_number | negate | and empty_fields.validate'> This field is required.</span>
+                <span rv-show='user.tax_identification_number | is-valid-regex "^[\w-]{0,20}$" | eq false' class='validation error-msg '>Only numbers, letters, hyphens are allowed.</span>
             </div>
         </div>
         <div class='row'>
