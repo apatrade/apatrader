@@ -1,10 +1,10 @@
 {
-  "name": "Webtrader",
-  "short_name": "Webtrader",
+  "name": "apatrader",
+  "short_name": "apatrader",
   "version": "3.1.1",
   "manifest_version": 2,
   "description": "Webtrader for Binary.com",
-  "homepage_url": "https://www.binary.com",
+  "homepage_url": "https://apatrade.github.io/apatrader",
   "icons": {
     "16": "v3.1.1/images/favicons/favicon-16x16.png",
     "32": "v3.1.1/images/favicons/favicon-32x32.png",
